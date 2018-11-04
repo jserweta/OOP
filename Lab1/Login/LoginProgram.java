@@ -6,7 +6,7 @@ import java.io.*;
 import LoginPackage.*;
 /**
  *
- * @author Jakub
+ * @author Jakub Serweta
  */
 public class LoginProgram {
     public static void main(String[] argv){
