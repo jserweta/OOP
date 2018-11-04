@@ -1,3 +1,7 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 import java.io.*;
 import LoginPackage.*;
 /**
@@ -5,7 +9,7 @@ import LoginPackage.*;
  * @author Jakub Serweta
  */
 public class LoginProgram {
-    public static void main(String[] argv){
+    public static void main(String[] argv) throws IOException {
         Login log = new Login("ala", "makota");
         try {
             InputStreamReader rd = new InputStreamReader(System.in);
@@ -22,10 +26,12 @@ public class LoginProgram {
          przechowywanymi w obiekcie log Jeśli tak, to ma zostać
          wyswietlone "OK", jesli nie - prosze wyswietlić informacje o błedzie
          */
-            if(log.check(login, haslo) == true){
+            if(log.check(login, haslo)){
                 System.out.print("OK");
+            }else if (login.equals("")|| haslo.equals("")){
+                throw new IOException("Wprowadź dane!");
             }else{
-                System.out.print("Zły login lub hasło!");
+                throw new IOException("Błędny login lub hasło!");
             }
 
         } catch (IOException e) {
