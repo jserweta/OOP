@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 public class Pesel {
 
     public static boolean checkPesel(String pesel) throws IOException {

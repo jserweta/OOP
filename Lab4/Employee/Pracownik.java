@@ -1,7 +1,6 @@
 public abstract class Pracownik {
 
-    String peselNumber;
-    double wynagrodzenieBrutto;
-
+    public String peselNumber;
+    public double wynagrodzenieBrutto;
     abstract double wynagrodzenieNetto();
 }
