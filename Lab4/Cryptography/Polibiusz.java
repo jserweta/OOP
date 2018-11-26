@@ -31,11 +31,14 @@ public class Polibiusz implements Algorithm {
     @Override
     public String decrypt(String word) {
         String decryptedWord = new String();
-        char b = word.charAt(1);
-        for(int i=0; i<word.length();i=i+2){
-            decryptedWord += alphabet[Character.getNumericValue(word.charAt(i)) - 1][Character.getNumericValue(word.charAt(i+1)) - 1];
+
+        char [] tablica = word.toCharArray();
+        for(int i=0; i<tablica.length; i=i+2){
+            decryptedWord += alphabet[(int)tablica[i]-49][(int)tablica[i+1]-49];
         }
 
+
         return decryptedWord;
+
     }
 }
