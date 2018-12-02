@@ -1,0 +1,3 @@
+class Meat extends Food {
+
+}
