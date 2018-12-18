@@ -2,31 +2,32 @@ import java.io.*;
 import java.util.Random;
 
 public class GenerateRandoms implements Runnable{
-    private FileWriter fw;
+    private FileWriter writer;
 
     GenerateRandoms(){
         try {
-            fw = new FileWriter("randoms.txt");
+            writer = new FileWriter("randoms.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
-    public void CreateFile(){
+    public void randomFile(){
         try {
-            Random random = new Random();
+            Random randomize = new Random();
             for(int i = 0; i < 100; i++ ){
-                for(int j = 0; j < 10_000; j++){
-                    fw.write(random.nextInt(1000) + " ");
+                for(int j = 0; j < 10000; j++){
+                    writer.write(randomize.nextInt(1000) + " ");
                 }
-                fw.write("\r\n");
+                writer.write("\n");
             }
         }
         catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                fw.close();
+                writer.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -35,6 +36,6 @@ public class GenerateRandoms implements Runnable{
 
     @Override
     public void run(){
-        CreateFile();
+        randomFile();
     }
 }

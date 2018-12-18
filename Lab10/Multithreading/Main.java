@@ -1,12 +1,13 @@
 public class Main  {
-    public static void main(String[] args) throws InterruptedException {
-        MaxMultiThread mlt = new MaxMultiThread(1);
-        GenerateRandoms gen = new GenerateRandoms();
+    public static void main(String[] args){
 
-        Thread thread1 = new Thread(gen);
-        Thread thread2 = new Thread(mlt);
+        MaxMultiThread multithread = new MaxMultiThread();
+        GenerateRandoms generate = new GenerateRandoms();
 
-        thread1.start();
-        thread2.start();
+        Thread firstThread = new Thread(generate);
+        Thread secondThread = new Thread(multithread);
+
+        firstThread.start();
+        secondThread.start();
     }
 }

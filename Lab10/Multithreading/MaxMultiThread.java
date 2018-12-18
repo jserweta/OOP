@@ -4,10 +4,7 @@ import java.util.Scanner;
 
 public class MaxMultiThread implements Runnable{
 
-    private int choice;
-
-    MaxMultiThread(int function_number){
-        this.choice = function_number;
+    MaxMultiThread(){
     }
 
     public static LinkedList<LinkedList<Integer>> getList(){
@@ -15,12 +12,12 @@ public class MaxMultiThread implements Runnable{
 
         try {
             FileReader reader = new FileReader("randoms.txt");
-            Scanner scr = new Scanner(reader);
+            Scanner input = new Scanner(reader);
 
 
-            while(scr.hasNextLine()){
-                String str = new String();
-                str = scr.nextLine();
+            while(input.hasNextLine()){
+                String str;
+                str = input.nextLine();
                 String number = new String();
 
                 LinkedList<Integer> temp = new LinkedList<>();
@@ -36,7 +33,7 @@ public class MaxMultiThread implements Runnable{
                     }
                 }
                 list.add(temp);
-                Thread.sleep(25);
+                Thread.sleep(10);
             }
 
             reader.close();
@@ -56,28 +53,17 @@ public class MaxMultiThread implements Runnable{
     public void run(){
         LinkedList<LinkedList<Integer>> list = new LinkedList<>();
         list = getList();
-        if(choice == 1){
+
             for(LinkedList<Integer> l : list){
-                for(Integer elem : l){
-                    System.out.print(function_firts(elem) + " ");
+                for(Integer x : l){
+                    System.out.print(function(x) + " ");
                 }
                 System.out.println();
             }
-        }else if(choice == 2){
-            for(LinkedList<Integer> l : list){
-                for(Integer elem : l){
-                    System.out.print(function_second(elem) + " ");
-                }
-                System.out.println();
-            }
-        }
     }
 
-    public int function_firts(int x){
-        return 2*x*x+x+1;
+    public int function(int x){
+        return x*x;
     }
 
-    public int function_second(int x){
-        return 7*x+5;
-    }
 }
