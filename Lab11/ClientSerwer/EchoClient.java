@@ -25,11 +25,12 @@ public class EchoClient {
         BufferedReader stdIn = new BufferedReader(
                 new InputStreamReader(System.in));
         String userInput;
-
-        System.out.println("Type a message: ");
+        
+        System.out.print("Komenda (LOGIN/LOGOUT/LS/GET): ");
         while ((userInput = stdIn.readLine()) != null) {
             out.println(userInput);
-            System.out.println("echo: " + in.readLine());
+            System.out.println("\nServer: " + in.readLine());
+            System.out.print("\nKomenda (LOGIN/LOGOUT/LS/GET): ");
         }
 
         out.close();
