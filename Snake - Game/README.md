@@ -8,6 +8,6 @@ You can download SnakeTheGame.jar file and try it out.
 
 Screenshots:
 
-![Screenshot](https://github.com/jserweta/Obiektowe/blob/master/SnakeTheGame/1.png)
+![Screenshot](https://github.com/jserweta/Obiektowe/blob/master/Snake%20-%20Game/1.png)
 
-![Screenshot](https://github.com/jserweta/Obiektowe/blob/master/SnakeTheGame/2.png)
+![Screenshot](https://github.com/jserweta/Obiektowe/blob/master/Snake%20-%20Game/2.png)
