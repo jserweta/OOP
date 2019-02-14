@@ -1,8 +1,13 @@
 import javax.swing.JFrame;
 import java.awt.Color;
-
+/**
+ * @author Jakub Serweta
+ */
 public class Snake {
 
+    /**
+     * Set the board options and start the game.
+     */
     public static void main(String[] args) {
 	    JFrame gameUI = new JFrame();
 

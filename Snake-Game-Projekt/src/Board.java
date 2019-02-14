@@ -6,25 +6,53 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
 
-public class Board extends JPanel implements KeyListener, ActionListener {
+/**
+ * @author Jakub Serweta
+ *
+ * Represents implementation of board.
+ */
 
+public class Board extends JPanel implements KeyListener, ActionListener {
+    /**
+     * xLength set width of the board
+     * yLength set height of the board
+     */
     private int[] xLength = new int[750];
     private int[] yLength = new int[750];
 
+    /** Size of each element on the board. */
+
     private int elementSize = 25;
+    /**  Variables which are incremented when snake collect an apple. */
     private int score = 0;
     private int snakeLength = 3;
+
+    /** Delay which is used by a timer. */
     private int delay = 100;
+
+    /** Checks if snake is moving from initial position. */
     private int moves = 0;
 
+    /** Time which program need to set speed of snake. */
     private Timer timer;
 
+    /** Set of variables which are changed when snake is moving left, right, up or down. */
     private boolean left = false;
     private boolean right = false;
     private boolean up = false;
     private boolean down = false;
+
+    /** If snake hit the wall ar himself, then it is changed to true. */
     private boolean gameOver = false;
 
+
+    /**
+     * <p>
+     *     Set of variables which are an implementation of the
+     *     Icon interface that paints different positions of
+     *     head, tail and apple.
+     * </p>
+     */
     private ImageIcon rightHead;
     private ImageIcon upHead;
     private ImageIcon downHead;
@@ -32,18 +60,27 @@ public class Board extends JPanel implements KeyListener, ActionListener {
     private ImageIcon tail;
     private ImageIcon apple;
 
+    /** X coordinate of an apple on the board. */
     private int xApplePosition;
+
+    /** Y coordinate of an apple on the board. */
     private int yApplePosition;
 
+    /** Table of specific X coordinates, which programme use to randomize position of apple. */
     private int [] appleX = {50,75,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,
                             475,500,525,550,575,600,625,650,675,700,725,750,775,800,825};
+
+    /** Table of specific Y coordinates, which programme use to randomize position of apple. */
     private int [] appleY = {100,125,150,175,200,225,250,275,300,325,350,375,400,425,
                                 450,475,500,525,550,575,600};
 
-
+    /** An instance of this class is used to generate a stream of pseudorandom numbers. */
     private Random random = new Random();
 
-
+    /**
+     * The constructor
+     * It starts the whole game. This method locates an apple, starts an timer and add key listeners.
+     */
     public Board(){
         addKeyListener(this);
         setFocusable(true);
@@ -54,6 +91,19 @@ public class Board extends JPanel implements KeyListener, ActionListener {
         timer.start();
     }
 
+
+    /**
+     *  This method paints the GUI of the programme.
+     *  <p>
+     *      It draw title and game containers,
+     *      set up the graphics which are needed during the game
+     *      and set up snake position.
+     *
+     *      This method is handled until the param gameover is false.
+     *  </p>
+     *
+     * @param g  uses the Graphics class, which is the abstract base class for all graphics contexts that allow an application to draw onto components.
+     */
     public void paint(Graphics g){
             if (moves == 0){
                 xLength[2] = 50;
@@ -126,6 +176,11 @@ public class Board extends JPanel implements KeyListener, ActionListener {
 
     }
 
+    /**
+     * checkApple method
+     *
+     *  This method check if head of snake hit an apple and locate new apple.
+     */
     private void checkApple() {
 
         if ((xLength[0] == appleX[xApplePosition]) && (yLength[0] == appleY[yApplePosition])) {
@@ -134,10 +189,22 @@ public class Board extends JPanel implements KeyListener, ActionListener {
             locateApple();
         }
     }
+
+    /**
+     * locateApple method
+     *
+     *  This method locate an apple on the board.
+     */
     private void locateApple() {
         xApplePosition = random.nextInt(32);
         yApplePosition = random.nextInt(21);
     }
+
+    /**
+     * move method
+     *
+     *  This method move the tail of the snake using road of the head.
+     */
     private void move() {
 
         for (int z = snakeLength; z > 0; z--) {
@@ -162,6 +229,13 @@ public class Board extends JPanel implements KeyListener, ActionListener {
         }
     }
 
+    /**
+     * gameOver method
+     *
+     *  This method draw 'Game over' information and shows the current score.
+     *
+     * @param g  uses the Graphics class, which is the abstract base class for all graphics contexts that allow an application to draw onto components.
+     */
     private void gameOver(Graphics g){
         g.setColor(Color.WHITE);
         g.setFont(new Font("arial", Font.BOLD, 50));
@@ -175,6 +249,11 @@ public class Board extends JPanel implements KeyListener, ActionListener {
         g.drawString("Score: " +score, 390,380);
     }
 
+    /**
+     * checkCollision method
+     *
+     *  This method check if the snake hit the wall or himself.
+     */
     private void checkCollision() {
 
         for(int b = 1; b < snakeLength; b++){
@@ -209,6 +288,10 @@ public class Board extends JPanel implements KeyListener, ActionListener {
         }
     }
 
+    /** Override method of ActionListener interface.
+     *
+     * It is repainting the board as long as the game is not over.
+     * */
     @Override
     public void actionPerformed(ActionEvent e) {
         timer.start();
@@ -225,7 +308,11 @@ public class Board extends JPanel implements KeyListener, ActionListener {
     public void keyTyped(KeyEvent e) {
 
     }
-
+    /** Override method of KeyListener interface.
+     *
+     * It is changing the direction where snake is moving.
+     * It restarts the game when player press the space button.
+     * */
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
